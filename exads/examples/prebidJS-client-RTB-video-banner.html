@@ -24,7 +24,6 @@
         // End GDPR params
 
         let siteId = '12345';
-        let siteName = 'your-site.com';
         let bannerSizes = [
             [900, 250]
         ];
@@ -110,13 +109,12 @@
                 }
             },
             bids: [{
-                bidder: 'exadsadserver',
+                bidder: 'exads',
                 params: {
                         zoneId: zoneId,
                         fid: fid,
                         partner: partner,
                         siteId: siteId,
-                        siteName: siteName,
                         userIp: 0,
                         userId: userId,
                         country: country,
@@ -125,8 +123,13 @@
                         bidfloor: bidfloor,
                         bidfloorcur: bidfloorcur,
                         bcat: ['IAB25', 'IAB7-39','IAB8-18','IAB8-5','IAB9-9'],
-                        badv: ['first.com', 'second.com'],
+                        badv: ['first.com', 'second.com'],                        
                         mimes: mimes,
+                        dsa: {
+                            dsarequired: 3, 
+                            pubrender: 0,
+                            datatopub: 2
+                        },
                         endpoint: exadsEndpoint
                     }
                 }]
@@ -148,7 +151,7 @@
                     pbjs.addAdUnits(adUnits);
                     pbjs.requestBids({
                         timeout: PREBID_TIMEOUT,
-                        bidsBackHandler: function () {
+                        bidsBackHandler: function (response) {
                             let iframe = document.getElementById('postbid_iframe');
                             let iframeDoc = iframe.contentWindow.document;
                             let adServerTargeting = pbjs.getAdserverTargetingForAdUnitCode('postbid_iframe');
@@ -170,10 +173,6 @@
 
         initBids();
 
-        // Define the passback HTML tag here.
-        // Note that this tag is usually in either Script tag form or iFrame form.
-        let passbackTagHtml = '<iframe src="//a.adnflow.com/iframe.php?idzone=88&size=300x250" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>';
-        
     </script>
 
 </head>

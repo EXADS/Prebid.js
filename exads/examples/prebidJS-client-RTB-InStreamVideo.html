@@ -30,7 +30,7 @@
     <script>
         // Client Conf start
         // Set as true for development environments only
-        const isEnabledDebug = false;
+        const isEnabledDebug = true;
         const exadsEndpoint = 'https://your-ad-network.com/rtb.php';
         const partner = 'ortb_2_4';
         let zoneId = 5208095;
@@ -107,12 +107,12 @@
                 mediaTypes: {
                     video: {
                         mimes: ['video/mp4'],
-                        protocols: [3, 6],
+                        protocols: [3, 6, 2],
                         divId: 'player', // required to indicate which player is being used to render this ad unit.
                     }
                 },
                 bids: [{
-                    bidder: 'exadsadserver',
+                    bidder: 'exads',
                     params: {
                         zoneId: zoneId,
                         fid: fid,
@@ -137,7 +137,7 @@
                         bidfloor: bidfloor,
                         bidfloorcur: bidfloorcur,
                         bcat: ['IAB25', 'IAB7-39','IAB8-18','IAB8-5','IAB9-9'],
-                        badv: ['first.com', 'second.com'],
+                        badv: ['first.com', 'second.com'],                        
                         endpoint: exadsEndpoint
                     }
                 }]

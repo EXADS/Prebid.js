@@ -32,6 +32,7 @@
         let bidfloorcur = 'EUR';
         let bidfloor = 0.00000011;
         let mimes = ['image/jpg'];
+        let imageOutput = 'html';
         // Client Conf end
 
         let adUnits = [];
@@ -56,9 +57,7 @@
 
         handleRTB();
 
-        if (isEnabledDebug) {
-            onScriptLoaded();
-        }
+        onScriptLoaded();
 
         function onScriptLoaded() {
             pbjs.setConfig({
@@ -100,16 +99,16 @@
             return 4294967296 * (2097151 & h2) + (h1 >>> 0);
         }
         
-        function handleRTB() {
-            adUnits = [{
-            code: 'postbid_iframe',
-            mediaTypes: {
-                banner: {
-                    sizes: bannerSizes
-                }
-            },
-            bids: [{
-                bidder: 'exadsadserver',
+            function handleRTB() {
+                adUnits = [{
+                    code: 'postbid_iframe',
+                    mediaTypes: {
+                        banner: {
+                            sizes: bannerSizes
+                        }
+                    },
+                    bids: [{
+                        bidder: 'exads',
                 params: {
                         zoneId: zoneId,
                         fid: fid,
@@ -126,12 +125,13 @@
                         bcat: ['IAB25', 'IAB7-39','IAB8-18','IAB8-5','IAB9-9'],
                         badv: ['first.com', 'second.com'],
                         mimes: mimes,
-                        endpoint: exadsEndpoint,
                         dsa: {
                             dsarequired: 3, 
                             pubrender: 0,
                             datatopub: 2
                         },
+                        imageOutput: imageOutput,
+                        endpoint: exadsEndpoint
                     }
                 }]
             }];
@@ -152,7 +152,7 @@
                     pbjs.addAdUnits(adUnits);
                     pbjs.requestBids({
                         timeout: PREBID_TIMEOUT,
-                        bidsBackHandler: function () {
+                        bidsBackHandler: function (response) {
                             let iframe = document.getElementById('postbid_iframe');
                             let iframeDoc = iframe.contentWindow.document;
                             let adServerTargeting = pbjs.getAdserverTargetingForAdUnitCode('postbid_iframe');
@@ -173,6 +173,7 @@
         }
 
         initBids();
+
     </script>
 
 </head>

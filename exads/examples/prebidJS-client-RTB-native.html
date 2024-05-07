@@ -13,8 +13,8 @@
         // Set as true for development environments only
         const isEnabledDebug = false;
         const exadsEndpoint = 'https://your-ad-network.com/rtb.php';
-        let zoneId = 5208093;
-        let fid = '21352c8fa2f3649fdd2b01d550aa0d1fd183926c';
+        let zoneId = 5219857;
+        let fid = 'a7c18eb18c2a4b4ea9ea6816a39d0369a91a5912';
         const partner = 'ortb_2_4';
 
         // Start GDPR params
@@ -24,7 +24,7 @@
         // End GDPR params
 
         let siteId = '12345';
-        let siteName = 'your-site.com';
+        let siteName = 'test.com';
         let bannerSizes = [
             [300, 250]
         ];
@@ -137,7 +137,7 @@
                     },
                 },
                 bids: [{
-                    bidder: 'exadsadserver',
+                    bidder: 'exads',
                     params: {
                         zoneId: zoneId,
                         fid: fid,
@@ -159,7 +159,7 @@
                         bidfloor: bidfloor,
                         bidfloorcur: bidfloorcur,
                         bcat: ['IAB25', 'IAB7-39','IAB8-18','IAB8-5','IAB9-9'],
-                        badv: ['first.com', 'second.com'],
+                        badv: ['first.com', 'second.com'],                        
                         country: country,
                         endpoint: exadsEndpoint
                     }
