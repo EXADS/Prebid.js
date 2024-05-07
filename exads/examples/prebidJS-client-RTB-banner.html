@@ -57,7 +57,9 @@
 
         handleRTB();
 
-        onScriptLoaded();
+        if (isEnabledDebug) {
+            onScriptLoaded();
+        }
 
         function onScriptLoaded() {
             pbjs.setConfig({
